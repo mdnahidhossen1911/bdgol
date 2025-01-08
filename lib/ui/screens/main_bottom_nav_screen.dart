@@ -1,7 +1,8 @@
-import 'package:bdgol/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 
+import '../utils/app_theme_color.dart';
 import '../widgets/bottom_navBar_icons.dart';
+import 'home_screen.dart';
 
 class MainBottomNavScreen extends StatefulWidget {
   const MainBottomNavScreen({super.key});
@@ -28,7 +29,7 @@ class _MainBottomNavScreenState extends State<MainBottomNavScreen> {
         type: BottomNavigationBarType.fixed,
         backgroundColor: Colors.white,
         currentIndex: _selectIndex,
-        selectedItemColor: Colors.orangeAccent,
+        selectedItemColor: AppColor.themeColor,
         onTap: (index) {
           _selectIndex = index;
           setState(() {});

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 
+import '../utils/app_theme_color.dart';
+
 class NavIcons {
   static const String _assetsPath = 'assets/icons';
   static const double _iconSize = 24;
-  static const Color _selectedColor = Colors.orangeAccent;
+  static const Color _selectedColor = AppColor.themeColor;
   static const Color _unSelectedColor = Colors.black54;
 
   static Image home = _icon('$_assetsPath/home.png');

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
+import '../utils/app_theme_color.dart';
+
 class ProviderListViewItme extends StatelessWidget {
   final Map providerMap;
-  const ProviderListViewItme({super.key, required this.providerMap});
+  const ProviderListViewItme({required this.providerMap});
 
   @override
   Widget build(BuildContext context) {
@@ -14,18 +16,18 @@ class ProviderListViewItme extends StatelessWidget {
       decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(12),
-          boxShadow: [BoxShadow(color: Colors.grey.shade400, blurRadius: 2)]),
+          boxShadow: [BoxShadow(color: Colors.grey.shade400, blurRadius: 3)]),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Container(
             padding: EdgeInsets.all(2),
             decoration: BoxDecoration(
-              color: Colors.orangeAccent.shade100,
+              color: AppColor.themeColor,
               borderRadius: BorderRadius.circular(100),
             ),
             child: CircleAvatar(
-              backgroundColor: Colors.orangeAccent.shade100,
+              backgroundColor: AppColor.themeColor,
               maxRadius: 35,
               backgroundImage: NetworkImage(
                 '${providerMap["image"]}',
@@ -38,6 +40,7 @@ class ProviderListViewItme extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
+                SizedBox(height: 4),
                 Text(
                   providerMap['name'],
                   maxLines: 1,
@@ -53,25 +56,25 @@ class ProviderListViewItme extends StatelessWidget {
                   children: [
                     Icon(
                       Icons.location_on_outlined,
-                      color: Colors.orange,
+                      color: AppColor.themeColor,
                       size: 18,
                     ),
                     Text(
                       providerMap['location'],
-                      style: TextStyle(color: Colors.orange),
+                      style: TextStyle(color: AppColor.themeColor),
                     ),
                   ],
                 ),
                 ElevatedButton(
                   onPressed: () {},
-                  child: Text(
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: AppColor.themeColor,
+                      minimumSize: Size(100, 32)),
+                  child: const Text(
                     'View Profile',
                     style: TextStyle(color: Colors.white),
                   ),
-                  style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.orangeAccent,
-                      minimumSize: Size(100, 32)),
-                )
+                ),
               ],
             ),
           )

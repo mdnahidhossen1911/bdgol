@@ -1,4 +1,4 @@
-import 'package:bdgol/screens/main_bottom_nav_screen.dart';
+import 'package:bdgol/ui/screens/main_bottom_nav_screen.dart';
 import 'package:flutter/material.dart';
 
 class BDGOLApp extends StatelessWidget {

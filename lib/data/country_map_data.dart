@@ -2,7 +2,7 @@ class CountryMapData {
   static const List<Map<String, dynamic>> countries = [
     {
       "name": "Australia",
-      "flag": "https://flagpedia.net/data/flags/emoji/twitter/256x256/au.png",
+      "flag": "https://flagpedia.net/data/flags/w580/au.webp",
       "count": 182
     },
     {
@@ -12,22 +12,22 @@ class CountryMapData {
     },
     {
       "name": "Canada",
-      "flag": "https://flagpedia.net/data/flags/emoji/twitter/256x256/ca.png",
+      "flag": "https://flagpedia.net/data/flags/w580/ca.webp",
       "count": 77
     },
     {
       "name": "Croatia",
-      "flag": "https://flagpedia.net/data/flags/emoji/twitter/256x256/cr.png",
+      "flag": "https://flagpedia.net/data/flags/w580/hr.webp",
       "count": 391
     },
     {
       "name": "Denmark",
-      "flag": "https://flagpedia.net/data/flags/emoji/twitter/256x256/dm.png",
+      "flag": "https://flagpedia.net/data/flags/w580/dk.webp",
       "count": 223
     },
     {
       "name": "France",
-      "flag": "https://flagpedia.net/data/flags/emoji/twitter/256x256/fr.png",
+      "flag": "https://flagpedia.net/data/flags/w580/fr.webp",
       "count": 219
     },
     {

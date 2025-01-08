@@ -2,9 +2,12 @@ import 'package:bdgol/data/country_map_data.dart';
 import 'package:flutter/material.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
-import '../data/recently_join_provider_data.dart';
+import '../../data/recently_join_provider_data.dart';
+import '../utils/app_theme_color.dart';
+import '../widgets/bdgol_appbar.dart';
+import '../widgets/featured_provider_listview_item.dart';
 import '../widgets/home_country_grid_item.dart';
-import '../widgets/home_provider_listiew_item.dart';
+import '../widgets/recently_joined_provider_listiew_item.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -33,25 +36,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        forceMaterialTransparency: true,
-        title: RichText(
-          text: TextSpan(
-            text: 'BDGOL',
-            style: TextStyle(
-              fontSize: 24,
-              color: Colors.orangeAccent,
-              fontWeight: FontWeight.bold,
-            ),
-            children: [
-              TextSpan(text: '.com'),
-            ],
-          ),
-        ),
-        actions: [
-          IconButton(onPressed: () {}, icon: Icon(Icons.more_vert_sharp))
-        ],
-      ),
+      appBar: BDGOLAppBar(),
       drawer: Drawer(),
       body: SingleChildScrollView(
         child: Column(
@@ -62,41 +47,107 @@ class _HomeScreenState extends State<HomeScreen> {
             SizedBox(height: 14),
             _buildVideoBannerwithSummary(),
             SizedBox(height: 12),
-            Center(
-              child: Text(
-                'Select Your Country',
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
+            _buildSelectYourCountryText(),
             _buildCountryGridView(),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
-              child: RichText(
-                text: TextSpan(
-                  text: 'RESENTLY JOIN',
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black,
-                  ),
-                  children: [
-                    TextSpan(
-                      text: '  PROVIDER',
-                      style: TextStyle(
-                        color: Colors.orangeAccent,
-                        fontSize: 20,
-                      ),
-                    ),
-                  ],
-                ),
+            SizedBox(height: 8),
+            _buildRecentlyJoinedProviderText(),
+            _buildProviderListview(),
+            SizedBox(height: 16),
+            _buildFeaturedProviderText(),
+            _buildFeaturedProviderListView(),
+            SizedBox(height: 16),
+          ],
+        ),
+      ),
+    );
+  }
+
+  SizedBox _buildFeaturedProviderListView() {
+    return SizedBox(
+      height: 330,
+      width: double.maxFinite,
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        padding: EdgeInsets.symmetric(horizontal: 8),
+        itemBuilder: (context, index) {
+          return FeaturedProviderListviewItem();
+        },
+      ),
+    );
+  }
+
+  Padding _buildFeaturedProviderText() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+      child: RichText(
+        text: TextSpan(
+          text: 'FEATURED ',
+          style: TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+            color: Colors.black,
+          ),
+          children: [
+            TextSpan(
+              text: ' PROVIDER',
+              style: TextStyle(
+                color: AppColor.LabelTextColor,
+                fontSize: 20,
               ),
             ),
-            _buildProviderListview(),
-            SizedBox(height: 20)
           ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildRecentlyJoinedProviderText() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 14),
+      child: RichText(
+        text: TextSpan(
+          text: 'RECENTLY JOINED',
+          style: TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+            color: Colors.black,
+          ),
+          children: [
+            TextSpan(
+              text: ' PROVIDER',
+              style: TextStyle(
+                color: AppColor.LabelTextColor,
+                fontSize: 20,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildSelectYourCountryText() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      child: Center(
+        child: RichText(
+          text: TextSpan(
+            text: 'SELECT YOUR',
+            style: TextStyle(
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
+              color: Colors.black,
+            ),
+            children: [
+              TextSpan(
+                text: ' COUNTRY',
+                style: TextStyle(
+                  color: AppColor.LabelTextColor,
+                  fontSize: 24,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -128,10 +179,10 @@ class _HomeScreenState extends State<HomeScreen> {
             height: 56,
           ),
           Text(
-            'We Build Your Trust',
+            'WE BUILD YOUR TRUST',
             style: TextStyle(
               fontSize: 24,
-              color: Colors.orangeAccent,
+              color: AppColor.LabelTextColor,
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -181,10 +232,10 @@ class _HomeScreenState extends State<HomeScreen> {
               child: YoutubePlayer(
                 controller: _controller,
                 showVideoProgressIndicator: true,
-                progressIndicatorColor: Colors.orangeAccent,
+                progressIndicatorColor: AppColor.themeColor,
                 progressColors: const ProgressBarColors(
-                  playedColor: Colors.orangeAccent,
-                  handleColor: Colors.orangeAccent,
+                  playedColor: AppColor.themeColor,
+                  handleColor: AppColor.themeColor,
                 ),
               ),
             ),
@@ -198,7 +249,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   Expanded(
                     child: Container(
                       decoration: BoxDecoration(
-                        color: Color(0xFFFFBC55),
+                        color: AppColor.summaryBoxColor,
                         border: Border.all(color: Colors.white, width: 2),
                         borderRadius: BorderRadius.only(
                           topRight: Radius.circular(36),
@@ -218,7 +269,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   Expanded(
                     child: Container(
                       decoration: BoxDecoration(
-                        color: Color(0xFFFFBC55),
+                        color: AppColor.summaryBoxColor,
                         border: Border.all(color: Colors.white, width: 2),
                         borderRadius: BorderRadius.only(
                           bottomRight: Radius.circular(36),
@@ -238,7 +289,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   Expanded(
                     child: Container(
                       decoration: BoxDecoration(
-                        color: Color(0xFFFFBC55),
+                        color: AppColor.summaryBoxColor,
                         border: Border.all(color: Colors.white, width: 2),
                         borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(34),
@@ -270,7 +321,7 @@ class _HomeScreenState extends State<HomeScreen> {
         begin: Alignment.topCenter,
         end: Alignment.bottomCenter,
         colors: [
-          Color(0xffffdaae),
+          AppColor.colorForBannerGradiun,
           Colors.white,
         ],
         stops: [0.85, 6.0],
